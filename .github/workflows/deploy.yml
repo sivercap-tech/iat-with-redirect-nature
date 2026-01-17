@@ -20,6 +20,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          # Cache is removed to prevent "lock file not found" error if package-lock.json is missing
 
       - name: Install dependencies
         run: npm install
@@ -27,7 +28,6 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          # This pulls the secret from GitHub Actions settings
           VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
           CI: false
 
