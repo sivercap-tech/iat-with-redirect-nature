@@ -421,7 +421,7 @@ const IATTest = ({ session, onComplete }: { session: UserSession, onComplete: ()
         </div>
 
         <div className="animate-pulse text-emerald-400 font-bold text-xl md:text-2xl mt-4">
-          Нажмите ПРОБЕЛ, чтобы продолжить
+          Нажмите ПРОБЕЛ или по ЭКРАНУ телефона, чтобы продолжить
         </div>
       </div>
     );
