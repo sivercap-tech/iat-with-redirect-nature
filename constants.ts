@@ -18,22 +18,16 @@ export const RUSSIAN_WORDS = [
   "Илья Муромец", "Волга", "Масленица", "Кокошник"
 ];
 
-// Placeholder Images (Using placeholder services for demo)
-export const HORSE_IMAGES = [
-  "https://picsum.photos/id/100/400/300", // Placeholder 1
-  "https://picsum.photos/id/102/400/300", // Placeholder 2
-];
+// Local Images
+// Assumes images are located in 'public/images/' and accessible via './images/'
+export const HORSE_IMAGES = Array.from({ length: 8 }, (_, i) => `./images/horse_${i + 1}.jpg`);
 
-export const COW_IMAGES = [
-  "https://picsum.photos/id/200/400/300", // Placeholder 1
-  "https://picsum.photos/id/201/400/300", // Placeholder 2
-];
+export const COW_IMAGES = Array.from({ length: 8 }, (_, i) => `./images/cow_${i + 1}.jpg`);
 
 // Generate Stimuli Pool
 export const STIMULI_POOL: Stimulus[] = [
   ...BASHKIR_WORDS.map((w, i) => ({ id: `bash_${i}`, content: w, type: StimulusType.WORD, category: Category.BASHKIR })),
   ...RUSSIAN_WORDS.map((w, i) => ({ id: `rus_${i}`, content: w, type: StimulusType.WORD, category: Category.RUSSIAN })),
-  // We duplicate images to match frequency if needed, or just randomly sample
   ...HORSE_IMAGES.map((url, i) => ({ id: `horse_${i}`, content: url, type: StimulusType.IMAGE, category: Category.HORSE })),
   ...COW_IMAGES.map((url, i) => ({ id: `cow_${i}`, content: url, type: StimulusType.IMAGE, category: Category.COW })),
 ];
