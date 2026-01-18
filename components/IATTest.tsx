@@ -372,7 +372,9 @@ const IATTest = ({ session, onComplete }: { session: UserSession, onComplete: ()
             Вы будете использовать клавиши 
             <span className="font-bold text-emerald-400 mx-2">'E'</span> и 
             <span className="font-bold text-blue-400 mx-2">'I'</span> 
-            на клавиатуре или телефоне, чтобы как можно быстрее относить слова и картинки к разным группам. 
+            на клавиатуре, чтобы как можно быстрее относить слова и картинки к разным группам. 
+            <br/><br/>
+            Если вы ошибетесь, на экране появится <span className="text-red-500 font-bold">X</span> красного цвета. Нажмите другую кнопку для продолжения.
             <br/><br/>
             Ниже показаны четыре группы и примеры элементов, которые к ним относятся:
           </p>
@@ -421,7 +423,7 @@ const IATTest = ({ session, onComplete }: { session: UserSession, onComplete: ()
         </div>
 
         <div className="animate-pulse text-emerald-400 font-bold text-xl md:text-2xl mt-4">
-          Нажмите ПРОБЕЛ или по ЭКРАНУ телефона, чтобы продолжить
+          Нажмите ПРОБЕЛ, чтобы продолжить
         </div>
       </div>
     );
