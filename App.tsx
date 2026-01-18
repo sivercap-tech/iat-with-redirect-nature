@@ -25,9 +25,9 @@ const Dashboard = ({ startTest }: { startTest: () => void }) => {
 
         {/* Start Test Card */}
         <div className="bg-gradient-to-r from-blue-900/40 to-slate-800/40 backdrop-blur-md rounded-2xl p-8 md:p-12 border border-slate-700/50 shadow-2xl flex flex-col items-center justify-center text-center">
-          <h2 className="text-3xl font-bold text-white mb-6">Добро пожаловать</h2>
+          <h2 className="text-3xl font-bold text-white mb-6">Спасибо что Вы еще с нами!</h2>
           <p className="text-blue-100 mb-10 max-w-2xl text-xl leading-relaxed opacity-90">
-            А теперь Вам предстоит выполнить специальное задание на сортировку слов и картинок. Оно займет около 3-5 минут. И помните нет неправильных ответов, отвечайте не задумываясь:)
+            Вам предстоит выполнить еще одно специальное задание на сортировку слов и картинок. Оно займет столько же времени, как и прошлое. И помните нет неправильных ответов, отвечайте не задумываясь:)
           </p>
           <button 
             onClick={startTest}
