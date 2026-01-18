@@ -43,6 +43,7 @@ export interface UserSession {
   userId: string;
   referrer: string;
   startTime: number;
+  group: 'A' | 'B'; // Counterbalancing group
 }
 
 export interface ChatMessage {
