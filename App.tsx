@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import IATTest from './components/IATTest';
+import { UserSession } from './types';
 
 // Simple UUID generator
 const generateUUID = () => {
@@ -24,9 +25,9 @@ const Dashboard = ({ startTest }: { startTest: () => void }) => {
 
         {/* Start Test Card */}
         <div className="bg-gradient-to-r from-blue-900/40 to-slate-800/40 backdrop-blur-md rounded-2xl p-8 md:p-12 border border-slate-700/50 shadow-2xl flex flex-col items-center justify-center text-center">
-          <h2 className="text-3xl font-bold text-white mb-6">Готовы пройти тест?</h2>
-          <p className="text-blue-100 mb-10 max-w-2xl text-lg leading-relaxed opacity-90">
-            Тест займет около 5-10 минут. Вам предстоит классифицировать слова и изображения как можно быстрее.
+          <h2 className="text-3xl font-bold text-white mb-6">Добро пожаловать</h2>
+          <p className="text-blue-100 mb-10 max-w-2xl text-xl leading-relaxed opacity-90">
+            А теперь Вам предстоит выполнить специальное задание на сортировку слов и картинок. Оно займет около 3-5 минут. И помните нет неправильных ответов, отвечайте не задумываясь:)
           </p>
           <button 
             onClick={startTest}
@@ -42,20 +43,25 @@ const Dashboard = ({ startTest }: { startTest: () => void }) => {
 };
 
 const AppContent = () => {
-  const [session, setSession] = useState<any>(null);
+  const [session, setSession] = useState<UserSession | null>(null);
   const [testActive, setTestActive] = useState(false);
 
   useEffect(() => {
-    // Initialize Session
+    // Initialize Session with Counterbalancing
     const userId = generateUUID();
     const referrer = document.referrer || "direct";
-    const newSession = {
+    
+    // Random assignment to Group A or B
+    const group = Math.random() < 0.5 ? 'A' : 'B';
+
+    const newSession: UserSession = {
       userId,
       referrer,
-      startTime: Date.now()
+      startTime: Date.now(),
+      group
     };
     setSession(newSession);
-    console.log(`User initialized: ${userId}`);
+    console.log(`User initialized: ${userId}, Group: ${group}`);
   }, []);
 
   const handleStartTest = () => {
