@@ -20,18 +20,22 @@ export const saveResults = async (session: any, results: any) => {
     };
   }
 
-  try {
-    // Assuming a table named 'iat_results' exists
+try {
+    // Используем upsert вместо update для надежности
     const { data, error } = await supabase
       .from('iat_results')
-      .update({ 
-        results_part2: results, 
-        // Можно добавить флаг, что тест пройден полностью
-        status: 'completed' 
-      })
-      .eq('user_id', session.userId); // Ищем по ID из первого теста
+      .upsert({ 
+        user_id: session.userId,     // Обязательно указываем ID
+        results_part2: results,      // Ваши данные
+        status: 'completed',
+        // Если хотите сохранить referrer, добавьте его тоже:
+        referrer: session.referrer 
+      }, { onConflict: 'user_id' })  // Если ID совпадает, данные обновятся
+      .select(); // ВАЖНО: Добавляем .select(), чтобы получить ответ
 
     if (error) throw error;
+    
+    console.log("Успешно сохранено:", data); // Для отладки
     return { data };
   } catch (error) {
     console.error("Error saving results:", error);
