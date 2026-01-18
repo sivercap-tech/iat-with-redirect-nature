@@ -19,7 +19,7 @@ const Dashboard = ({ startTest }: { startTest: () => void }) => {
         {/* Header Section */}
         <div className="text-center mb-8">
           <h1 className="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400 mb-6 leading-tight drop-shadow-sm">
-            Часть 2: Природа
+            Имплицитные ассоциативные тесты
           </h1>
         </div>
 
@@ -47,11 +47,13 @@ const AppContent = () => {
   const [testActive, setTestActive] = useState(false);
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const existingUserId = params.get('originalUserId');
-
-    const userId = existingUserId || generateUUID();
-    const referrer = document.referrer || "direct";
+    // 1. Проверяем, есть ли ID в ссылке (пришел ли человек с первого сайта)
+    const urlParams = new URLSearchParams(window.location.search);
+    // Ищем параметр 'originalUserId' (так мы назвали его в первом репо) или 'pid'
+    const existingId = urlParams.get('originalUserId') || urlParams.get('pid');
+    // Если ID есть, используем его. Если нет — генерируем новый (как раньше)
+    const userId = existingId || generateUUID();
+    const referrer = document.referrer || "direct";    
     
     const group = Math.random() < 0.5 ? 'A' : 'B';
 
