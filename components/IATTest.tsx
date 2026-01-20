@@ -289,6 +289,26 @@ const IATTest = ({ session, onComplete }: { session: UserSession, onComplete: ()
     }
   };
 
+  // Функция для безопасного закрытия страницы
+  const handleClose = () => {
+    // Попытка закрыть окно программно
+    window.close();
+    
+    // Если браузер блокирует закрытие (что часто бывает, если вкладка не открыта скриптом),
+    // выводим сообщение и очищаем страницу
+    if (!window.closed) {
+      alert("Опрос завершен. Вы можете закрыть эту вкладку вручную.");
+      document.body.innerHTML = `
+        <div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#0f172a;color:white;font-family:sans-serif;text-align:center;padding:20px;">
+          <div>
+            <h1 style="font-size:24px;margin-bottom:16px;color:#34d399;">Спасибо за участие!</h1>
+            <p style="font-size:18px;color:#cbd5e1;">Опрос завершен. Теперь вы можете закрыть эту страницу.</p>
+          </div>
+        </div>
+      `;
+    }
+  };
+
   useEffect(() => {
     const listener = (e: KeyboardEvent) => {
       if (e.code === 'Space') {
@@ -337,10 +357,10 @@ const IATTest = ({ session, onComplete }: { session: UserSession, onComplete: ()
 
         <div className="flex gap-4 mt-4">
           <button 
-            onClick={() => window.location.href = `https://panel.anketolog.ru/s/exf?s=0&ui=${session.userId}`}
+            onClick={handleClose}
             className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-bold text-lg transition-colors"
           >
-            Завершить опрос
+            Завершить опрос и закрыть
           </button>
           
           <button 
