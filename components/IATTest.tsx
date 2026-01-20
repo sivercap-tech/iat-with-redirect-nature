@@ -332,7 +332,7 @@ const IATTest = ({ session, onComplete }: { session: UserSession, onComplete: ()
             <p className="text-sm text-slate-400">Пожалуйста, сообщите администратору или проверьте настройки Supabase URL.</p>
           </div>
         ) : (
-          <p className="text-lg mb-8 text-slate-300">Данные успешно сохранены. Спасибо за прохождение всего теста!</p>
+          <p className="text-lg mb-8 text-slate-300">Данные успешно сохранены. Опрос закончен! Спасибо Вам большое! Знаем, это было не очень просто, но Вы очень сильно помогли науке! </p>
         )}
 
         <div className="flex gap-4 mt-4">
@@ -340,7 +340,7 @@ const IATTest = ({ session, onComplete }: { session: UserSession, onComplete: ()
             onClick={() => window.location.href = `https://panel.anketolog.ru/s/exf?s=0&ui=${session.userId}`}
             className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-bold text-lg transition-colors"
           >
-            Завершить тест
+            Завершить опрос
           </button>
           
           <button 
